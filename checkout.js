@@ -18,7 +18,7 @@ products.addEventListener("click", (event) => {
     if (event.target.nextElementSibling.textContent <= 0) {
       return;
     }
-    // 17 satır ile 19 değişince neden çalışmıyor derste 2.49 da saatte kaldın
+
     event.target.nextElementSibling.textContent--;
     calculatePrice(event.target);
   } else if (event.target.classList.contains("fa-trash-can")) {
@@ -39,4 +39,12 @@ const calculatePrice = (dis) => {
   productPrice.textContent = (
     quantity.textContent * discountendPrice.textContent
   ).toFixed(2);
+  calculateTotalPrice();
+};
+const calculateTotalPrice = () => {
+  const prices = document.querySelectorAll("#product-price");
+  const total = [...prices].reduce(
+    (sum, price) => sum + Number(price.textContent),
+    0
+  );
 };
