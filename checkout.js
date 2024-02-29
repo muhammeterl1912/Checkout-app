@@ -4,14 +4,15 @@ const products = document.querySelector(".product-list .products");
 const deleteallremove = document.querySelector(".delete-div");
 
 // ..................SELECTORS..................
-const free_shipping = 2000
-const shipping_price = 9.99
-const tax_rate = 18
+const free_shipping = 2000;
+const shipping_price = 9.99;
+const tax_rate = 18;
 //................Events..............................
 deleteallbtn.addEventListener("click", () => {
   products.textContent = "No Products";
   products.classList.add("no-product");
   deleteallremove.remove();
+  calculateTotalPrice(  )
 });
 products.addEventListener("click", (event) => {
   if (event.target.classList.contains("fa-plus")) {
@@ -26,10 +27,12 @@ products.addEventListener("click", (event) => {
     calculatePrice(event.target);
   } else if (event.target.classList.contains("fa-trash-can")) {
     event.target.closest(".product").remove();
-    calculatePrice(event.target)
+    calculatePrice(event.target);
   }
 });
-  window.addEventListener("load",(() =>{  calculatePrice() }  ))
+window.addEventListener("load", () => {
+  calculatePrice();
+});
 
 //................Events..............................
 const calculatePrice = (dis) => {
@@ -51,8 +54,17 @@ const calculateTotalPrice = () => {
   const total = [...prices].reduce(
     (sum, price) => sum + Number(price.textContent),
     0
-  )
-  const shippingPrice = total >= free_shipping ? 0.00 :shipping_price || total === 0 ? 0.0 : shipping_price
-  document.querySelector("#selected-price").textContent = total.toFixed(2)
-  document.getElementById("shipping").textContent = shippingPrice.toFixed(2)
+  );
+  const shippingPrice =
+    total >= free_shipping
+      ? 0.0
+      : shipping_price || total === 0
+      ? 0.0
+      : shipping_price;
+      const taxPrice = total / tax_rate
+      const sum = total + taxPrice + shippingPrice
+  document.querySelector("#selected-price").textContent = total.toFixed(2);
+  document.getElementById("shipping").textContent = shippingPrice.toFixed(2);
+  document.getElementById("tax").textContent = taxPrice.toFixed(2);
+  document.getElementById("total").textContent = sum.toFixed(2);
 };
