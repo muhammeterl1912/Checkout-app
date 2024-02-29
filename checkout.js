@@ -23,6 +23,7 @@ products.addEventListener("click", (event) => {
     calculatePrice(event.target);
   } else if (event.target.classList.contains("fa-trash-can")) {
     event.target.closest(".product").remove();
+    calculatePrice(event.target)
   }
 });
 
@@ -47,4 +48,5 @@ const calculateTotalPrice = () => {
     (sum, price) => sum + Number(price.textContent),
     0
   );
+  document.querySelector("#selected-price").textContent = total.toFixed(2)
 };
