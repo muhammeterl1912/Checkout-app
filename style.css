@@ -25,11 +25,14 @@
     color: var(--orange);
     padding: 0.5rem;
     cursor: pointer;
+    border-radius: 50%;
   }
   i:hover {
     color: white;
     border-radius: 50%;
     background-color: var(--orange);
+    transform: scale(1.1);
+    transition: all 0.8s;
   }
   
   /** Header */
@@ -191,6 +194,11 @@
     display: flex;
     justify-content: space-between;
     color: var(--fume);
+  }
+  .finish-btn:hover{
+    transform: scale(1.1);
+    transition: 1s;
+
   }
   
   /*! ------ RESPONSIVE ------- */
