@@ -3,16 +3,16 @@ const deleteallbtn = document.querySelector(".delete-div .fa-trash-can");
 const products = document.querySelector(".product-list .products");
 const deleteallremove = document.querySelector(".delete-div");
 
-// ..................SELECTORS..................
+// ..................CONSTANT..................
 const free_shipping = 2000;
 const shipping_price = 9.99;
 const tax_rate = 18;
-//................Events..............................
+//................EVENTS..............................
 deleteallbtn.addEventListener("click", () => {
-  products.textContent = "No Products";
+  products.textContent = "No Products Added";
   products.classList.add("no-product");
   deleteallremove.remove();
-  calculateTotalPrice(  )
+  calculateTotalPrice();
 });
 products.addEventListener("click", (event) => {
   if (event.target.classList.contains("fa-plus")) {
@@ -34,7 +34,7 @@ window.addEventListener("load", () => {
   calculatePrice();
 });
 
-//................Events..............................
+//................FUNCTIONS..............................
 const calculatePrice = (dis) => {
   const discountendPrice = dis
     .closest(".product-info")
@@ -61,8 +61,8 @@ const calculateTotalPrice = () => {
       : shipping_price || total === 0
       ? 0.0
       : shipping_price;
-      const taxPrice = total / tax_rate
-      const sum = total + taxPrice + shippingPrice
+  const taxPrice = total / tax_rate;
+  const sum = total + taxPrice + shippingPrice;
   document.querySelector("#selected-price").textContent = total.toFixed(2);
   document.getElementById("shipping").textContent = shippingPrice.toFixed(2);
   document.getElementById("tax").textContent = taxPrice.toFixed(2);
