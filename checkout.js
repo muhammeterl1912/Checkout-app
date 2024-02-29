@@ -4,6 +4,9 @@ const products = document.querySelector(".product-list .products");
 const deleteallremove = document.querySelector(".delete-div");
 
 // ..................SELECTORS..................
+const free_shipping = 2000
+const shipping_price = 9.99
+const tax_rate = 18
 //................Events..............................
 deleteallbtn.addEventListener("click", () => {
   products.textContent = "No Products";
@@ -26,6 +29,7 @@ products.addEventListener("click", (event) => {
     calculatePrice(event.target)
   }
 });
+  window.addEventListener("load",(() =>{  calculatePrice() }  ))
 
 //................Events..............................
 const calculatePrice = (dis) => {
@@ -47,6 +51,8 @@ const calculateTotalPrice = () => {
   const total = [...prices].reduce(
     (sum, price) => sum + Number(price.textContent),
     0
-  );
+  )
+  const shippingPrice = total >= free_shipping ? 0.00 :shipping_price || total === 0 ? 0.0 : shipping_price
   document.querySelector("#selected-price").textContent = total.toFixed(2)
+  document.getElementById("shipping").textContent = shippingPrice.toFixed(2)
 };
